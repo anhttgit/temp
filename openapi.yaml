@@ -1,0 +1,2210 @@
+openapi: 3.0.0
+paths:
+  /api/v1/categories:
+    post:
+      operationId: CategoriesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - Categories
+    get:
+      operationId: CategoriesController_findAll
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            type: number
+        - name: limit
+          required: false
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfinityPaginationCategoryResponseDto'
+      tags:
+        - Categories
+  /api/v1/categories/{id}:
+    get:
+      operationId: CategoriesController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - Categories
+    patch:
+      operationId: CategoriesController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - Categories
+    delete:
+      operationId: CategoriesController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Categories
+  /api/v1/categories/descendants/{parentId}:
+    get:
+      operationId: CategoriesController_getAllDescendants
+      parameters:
+        - name: parentId
+          required: true
+          in: path
+          schema:
+            type: number
+        - name: categoryType
+          required: false
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - Categories
+  /api/v1/payments:
+    post:
+      operationId: PaymentsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+      tags:
+        - Payments
+    get:
+      operationId: PaymentsController_findAll
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            type: number
+        - name: limit
+          required: false
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfinityPaginationPaymentResponseDto'
+      tags:
+        - Payments
+  /api/v1/payments/{id}:
+    get:
+      operationId: PaymentsController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+      tags:
+        - Payments
+    patch:
+      operationId: PaymentsController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+      tags:
+        - Payments
+  /api/v1/epay/callback:
+    get:
+      operationId: EpayCallbackController_callback
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Epay
+  /api/v1/epay/notify:
+    post:
+      operationId: EpayCallbackController_notify
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Epay
+  /api/v1/bookings:
+    post:
+      operationId: BookingsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpayInitPaymentDto'
+      tags:
+        - Bookings
+    get:
+      operationId: BookingsController_findAll
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            type: number
+        - name: limit
+          required: false
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfinityPaginationBookingResponseDto'
+      tags:
+        - Bookings
+  /api/v1/bookings/{id}:
+    get:
+      operationId: BookingsController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+      tags:
+        - Bookings
+    patch:
+      operationId: BookingsController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookingDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+      tags:
+        - Bookings
+    delete:
+      operationId: BookingsController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Bookings
+  /api/v1/tours:
+    post:
+      operationId: ToursController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTourDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+      tags:
+        - Tours
+    get:
+      operationId: ToursController_findAll
+      parameters:
+        - name: order
+          required: false
+          in: query
+          schema:
+            default: ASC
+            enum:
+              - ASC
+              - DESC
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: number
+        - name: take
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 50
+            default: 10
+            type: number
+        - name: q
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: categoryIds
+          required: false
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Tour'
+      tags:
+        - Tours
+  /api/v1/tours/{id}:
+    get:
+      operationId: ToursController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+      tags:
+        - Tours
+    patch:
+      operationId: ToursController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTourDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+      tags:
+        - Tours
+    delete:
+      operationId: ToursController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Tours
+  /api/v1/users:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Users
+      security:
+        - bearer: []
+    get:
+      operationId: UsersController_findAll
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            type: number
+        - name: limit
+          required: false
+          in: query
+          schema:
+            type: number
+        - name: filters
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: sort
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfinityPaginationUserResponseDto'
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/users/{id}:
+    get:
+      operationId: UsersController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Users
+      security:
+        - bearer: []
+    patch:
+      operationId: UsersController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Users
+      security:
+        - bearer: []
+    delete:
+      operationId: UsersController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Users
+      security:
+        - bearer: []
+  /api/v1/folders:
+    post:
+      operationId: FolderController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+      tags:
+        - Folders
+    get:
+      operationId: FolderController_findAll
+      parameters:
+        - name: order
+          required: false
+          in: query
+          schema:
+            default: ASC
+            enum:
+              - ASC
+              - DESC
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: number
+        - name: take
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 50
+            default: 10
+            type: number
+        - name: q
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: parentFolderId
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Folder'
+      tags:
+        - Folders
+  /api/v1/folders/{id}:
+    get:
+      operationId: FolderController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+      tags:
+        - Folders
+    patch:
+      operationId: FolderController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFolderDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+      tags:
+        - Folders
+    delete:
+      operationId: FolderController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Folders
+  /api/v1/files:
+    post:
+      operationId: FilesLocalController_uploadFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                  nullable: false
+                alternativeText:
+                  type: string
+                  nullable: false
+                caption:
+                  type: string
+                  nullable: true
+                folderId:
+                  type: string
+                  nullable: true
+                  format: uuid
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponseDto'
+      tags:
+        - Files
+      security:
+        - bearer: []
+    get:
+      operationId: FilesLocalController_findAll
+      parameters:
+        - name: order
+          required: false
+          in: query
+          schema:
+            default: ASC
+            enum:
+              - ASC
+              - DESC
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: number
+        - name: take
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 50
+            default: 10
+            type: number
+        - name: q
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: folderId
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PageDto'
+                  - properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/FileType'
+      tags:
+        - Files
+  /api/v1/files/multiple:
+    post:
+      operationId: FilesLocalController_uploadFiles
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                folderId:
+                  type: string
+                  format: uuid
+                  nullable: false
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileResponseDto'
+      tags:
+        - Files
+      security:
+        - bearer: []
+  /api/v1/files/{id}:
+    get:
+      operationId: FilesLocalController_getById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Files
+    patch:
+      operationId: FilesLocalController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFileDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileType'
+      tags:
+        - Files
+    delete:
+      operationId: FilesLocalController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Files
+  /api/v1/auth/email/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthEmailLoginDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseDto'
+      tags:
+        - Auth
+  /api/v1/auth/email/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRegisterLoginDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/email/confirm:
+    post:
+      operationId: AuthController_confirmEmail
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthConfirmEmailDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/email/confirm/new:
+    post:
+      operationId: AuthController_confirmNewEmail
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthConfirmEmailDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/forgot/password:
+    post:
+      operationId: AuthController_forgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthForgotPasswordDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/reset/password:
+    post:
+      operationId: AuthController_resetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthResetPasswordDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/me:
+    get:
+      operationId: AuthController_me
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+    patch:
+      operationId: AuthController_update
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthUpdateDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+    delete:
+      operationId: AuthController_delete
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/auth/refresh:
+    post:
+      operationId: AuthController_refresh
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshResponseDto'
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /api/v1/auth/logout:
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - Auth
+      security:
+        - bearer: []
+  /:
+    get:
+      operationId: HomeController_appInfo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Home
+info:
+  title: API
+  description: API docs
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateCategoryDto:
+      type: object
+      properties:
+        parentId:
+          type: number
+        type:
+          type: string
+        name:
+          type: string
+        meta:
+          type: object
+      required:
+        - parentId
+        - type
+        - name
+        - meta
+    Category:
+      type: object
+      properties:
+        id:
+          type: number
+        parentId:
+          type: number
+        path:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        meta:
+          $ref: '#/components/schemas/'
+      required:
+        - id
+        - parentId
+        - path
+        - type
+        - name
+        - meta
+    InfinityPaginationCategoryResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+        hasNextPage:
+          type: boolean
+          example: true
+      required:
+        - data
+        - hasNextPage
+    UpdateCategoryDto:
+      type: object
+      properties:
+        parentId:
+          type: number
+        type:
+          type: string
+        name:
+          type: string
+        meta:
+          type: object
+    CreatePaymentProviderDto:
+      type: object
+      properties:
+        providerName:
+          type: string
+        name:
+          type: string
+        merchantId:
+          type: string
+        secretKey:
+          type: string
+      required:
+        - providerName
+        - name
+        - merchantId
+        - secretKey
+    PaymentProvider:
+      type: object
+      properties:
+        providerName:
+          type: string
+        name:
+          type: string
+        merchantId:
+          type: string
+        secretKey:
+          type: string
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - providerName
+        - name
+        - merchantId
+        - secretKey
+        - id
+        - createdAt
+        - updatedAt
+    InfinityPaginationPaymentProviderResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentProvider'
+        hasNextPage:
+          type: boolean
+          example: true
+      required:
+        - data
+        - hasNextPage
+    UpdatePaymentProviderDto:
+      type: object
+      properties:
+        providerName:
+          type: string
+        name:
+          type: string
+        merchantId:
+          type: string
+        secretKey:
+          type: string
+    CreatePaymentDto:
+      type: object
+      properties:
+        orderAmount:
+          type: number
+        bookingId:
+          type: string
+        payType:
+          type: string
+        goodsName:
+          type: string
+      required:
+        - orderAmount
+        - bookingId
+        - payType
+        - goodsName
+    Payment:
+      type: object
+      properties:
+        orderAmount:
+          type: number
+        paidAmount:
+          type: number
+        status:
+          type: string
+        result:
+          type: object
+        invoiceNo:
+          type: string
+        transactionId:
+          type: string
+        paygateTransactionId:
+          type: string
+        retry:
+          type: number
+        bookingId:
+          type: string
+        payType:
+          type: string
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - orderAmount
+        - paidAmount
+        - status
+        - result
+        - invoiceNo
+        - transactionId
+        - paygateTransactionId
+        - retry
+        - bookingId
+        - payType
+        - id
+        - createdAt
+        - updatedAt
+    InfinityPaginationPaymentResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        hasNextPage:
+          type: boolean
+          example: true
+      required:
+        - data
+        - hasNextPage
+    UpdatePaymentDto:
+      type: object
+      properties:
+        orderAmount:
+          type: number
+        bookingId:
+          type: string
+        payType:
+          type: string
+        goodsName:
+          type: string
+        result:
+          type: object
+        paygateTransactionId:
+          type: string
+        status:
+          type: string
+        paidAmount:
+          type: number
+      required:
+        - result
+        - paygateTransactionId
+        - status
+        - paidAmount
+    Buyer:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
+      required:
+        - email
+        - firstName
+        - lastName
+        - phone
+        - address
+    CreateBookingDto:
+      type: object
+      properties:
+        tourId:
+          type: string
+          default: ca244ddf-1d25-4e94-8d0a-8aaabc863c50
+        adult:
+          type: number
+          default: 1
+        children:
+          type: number
+          default: 0
+        children1:
+          type: number
+          default: 0
+        children2:
+          type: number
+          default: 0
+        infant:
+          type: number
+          default: 0
+        departureDate:
+          format: date-time
+          type: string
+          default: 2024-08-26T11:21:30.586Z
+        payType:
+          type: string
+          default: DC
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+      required:
+        - tourId
+        - adult
+        - children
+        - children1
+        - children2
+        - infant
+        - departureDate
+        - payType
+        - buyer
+    EpayInitPaymentDto:
+      type: object
+      properties:
+        merTrxId:
+          type: string
+          default: EPAY0000014412658941217497
+        bookingId:
+          type: string
+          default: 039bfe77-2758-4684-abaa-d1544497365d
+        merId:
+          type: string
+          default: EPAY000001
+        currency:
+          type: string
+          default: VND
+        amount:
+          type: number
+          default: 15000000
+        invoiceNo:
+          type: string
+          default: 039bfe77-2758-4684-abaa-d1544497365a
+        goodsNm:
+          type: string
+          default: tour-halong1
+        payType:
+          type: string
+          default: DC
+        callBackUrl:
+          type: string
+          default: https://jtravel.com/api/callback
+        notifyUrl:
+          type: string
+          default: https://jtravel.com/api/notify
+        reqDomain:
+          type: string
+          default: jtravel.com
+        description:
+          type: string
+        merchantToken:
+          type: string
+        userLanguage:
+          type: string
+        timeStamp:
+          type: number
+        windowColor:
+          type: string
+          default: '#ef5459'
+      required:
+        - merTrxId
+        - bookingId
+        - merId
+        - currency
+        - amount
+        - invoiceNo
+        - goodsNm
+        - payType
+        - callBackUrl
+        - notifyUrl
+        - reqDomain
+        - description
+        - merchantToken
+        - userLanguage
+        - timeStamp
+        - windowColor
+    Tour:
+      type: object
+      properties:
+        id:
+          type: string
+        destinationType:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        pricePerAdult:
+          type: number
+        firstImage:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        itinerary:
+          type: string
+        travelCost:
+          type: number
+        travelMethod:
+          type: string
+        discountPecent:
+          type: number
+        fullPrice:
+          type: number
+        durationText:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        categoryIds:
+          example:
+            - 123456789
+            - 987654321
+            - 456789123
+            - 321987654
+          type: array
+          items:
+            type: integer
+            format: int64
+      required:
+        - id
+        - destinationType
+        - code
+        - name
+        - description
+        - pricePerAdult
+        - firstImage
+        - images
+        - itinerary
+        - travelCost
+        - travelMethod
+        - discountPecent
+        - fullPrice
+        - durationText
+        - createdAt
+        - updatedAt
+        - categories
+        - categoryIds
+    Booking:
+      type: object
+      properties:
+        tour:
+          $ref: '#/components/schemas/Tour'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        code:
+          type: string
+        status:
+          type: string
+        adult:
+          type: number
+        children:
+          type: number
+        children1:
+          type: number
+        children2:
+          type: number
+        infant:
+          type: number
+        servicesPrice:
+          type: number
+        tourPrice:
+          type: number
+        subTotal:
+          type: number
+        discount:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        tourId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - tour
+        - buyer
+        - code
+        - status
+        - adult
+        - children
+        - children1
+        - children2
+        - infant
+        - servicesPrice
+        - tourPrice
+        - subTotal
+        - discount
+        - tax
+        - total
+        - tourId
+        - createdAt
+        - updatedAt
+    InfinityPaginationBookingResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
+        hasNextPage:
+          type: boolean
+          example: true
+      required:
+        - data
+        - hasNextPage
+    UpdateBookingDto:
+      type: object
+      properties:
+        tourId:
+          type: string
+          default: ca244ddf-1d25-4e94-8d0a-8aaabc863c50
+        adult:
+          type: number
+          default: 1
+        children:
+          type: number
+          default: 0
+        children1:
+          type: number
+          default: 0
+        children2:
+          type: number
+          default: 0
+        infant:
+          type: number
+          default: 0
+        departureDate:
+          format: date-time
+          type: string
+          default: 2024-08-26T11:21:30.586Z
+        payType:
+          type: string
+          default: DC
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+    CreateTourDto:
+      type: object
+      properties:
+        discountPecent:
+          type: number
+        fullPrice:
+          type: number
+        durationText:
+          type: string
+        destinationType:
+          type: string
+        travelCost:
+          type: number
+        travelMethod:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        pricePerAdult:
+          type: number
+        firstImage:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        itinerary:
+          type: string
+        categoryIds:
+          example:
+            - 123456789
+            - 987654321
+            - 456789123
+            - 321987654
+          type: array
+          items:
+            type: integer
+            format: int64
+      required:
+        - discountPecent
+        - fullPrice
+        - durationText
+        - destinationType
+        - travelCost
+        - travelMethod
+        - code
+        - name
+        - description
+        - pricePerAdult
+        - firstImage
+        - images
+        - itinerary
+        - categoryIds
+    PageMetaDto:
+      type: object
+      properties:
+        page:
+          type: number
+        take:
+          type: number
+        itemCount:
+          type: number
+        pageCount:
+          type: number
+        hasPreviousPage:
+          type: boolean
+        hasNextPage:
+          type: boolean
+      required:
+        - page
+        - take
+        - itemCount
+        - pageCount
+        - hasPreviousPage
+        - hasNextPage
+    PageDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: array
+        meta:
+          $ref: '#/components/schemas/PageMetaDto'
+      required:
+        - data
+        - meta
+    UpdateTourDto:
+      type: object
+      properties:
+        discountPecent:
+          type: number
+        fullPrice:
+          type: number
+        durationText:
+          type: string
+        destinationType:
+          type: string
+        travelCost:
+          type: number
+        travelMethod:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        pricePerAdult:
+          type: number
+        firstImage:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        itinerary:
+          type: string
+        categoryIds:
+          example:
+            - 123456789
+            - 987654321
+            - 456789123
+            - 321987654
+          type: array
+          items:
+            type: integer
+            format: int64
+    FileDto:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: number
+      required:
+        - id
+    StatusDto:
+      type: object
+      properties:
+        id:
+          type: number
+      required:
+        - id
+    CreateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test1@example.com
+        password:
+          type: string
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        photo:
+          $ref: '#/components/schemas/FileDto'
+        role:
+          $ref: '#/components/schemas/RoleDto'
+        status:
+          $ref: '#/components/schemas/StatusDto'
+      required:
+        - email
+        - password
+        - firstName
+        - lastName
+    Folder:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        parentFolderId:
+          type: string
+        files:
+          type: array
+          items:
+            type: string
+        totalFiles:
+          type: number
+        size:
+          type: number
+        parentFolder:
+          $ref: '#/components/schemas/Folder'
+        childFolders:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - name
+        - parentFolderId
+        - files
+        - totalFiles
+        - size
+        - parentFolder
+        - childFolders
+    FileEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          example: cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae
+        path:
+          type: string
+          example: https://example.com/path/to/file.jpg
+      required:
+        - id
+        - path
+    RoleEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          example: admin
+      required:
+        - id
+        - name
+    StatusEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          example: active
+      required:
+        - id
+        - name
+    UserEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          example: john.doe@example.com
+        provider:
+          type: string
+          example: email
+        socialId:
+          type: string
+          example: '1234567890'
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        photo:
+          $ref: '#/components/schemas/FileEntity'
+        role:
+          $ref: '#/components/schemas/RoleEntity'
+        status:
+          $ref: '#/components/schemas/StatusEntity'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        deletedAt:
+          format: date-time
+          type: string
+      required:
+        - id
+        - email
+        - provider
+        - socialId
+        - firstName
+        - lastName
+        - photo
+        - role
+        - status
+        - createdAt
+        - updatedAt
+        - deletedAt
+    FileType:
+      type: object
+      properties:
+        id:
+          type: string
+          example: cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae
+        path:
+          type: string
+          example: https://example.com/path/to/file.jpg
+        name:
+          type: string
+        alternativeText:
+          type: string
+        caption:
+          type: string
+        width:
+          type: number
+        height:
+          type: number
+        formats:
+          type: object
+        hash:
+          type: string
+        ext:
+          type: string
+        mime:
+          type: string
+        size:
+          type: number
+        key:
+          type: string
+        previewUrl:
+          type: string
+        provider:
+          type: string
+        providerMetadata:
+          type: string
+        folderId:
+          type: string
+        folder:
+          $ref: '#/components/schemas/Folder'
+        createdById:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/UserEntity'
+      required:
+        - id
+        - path
+    Role:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          example: admin
+      required:
+        - id
+        - name
+    Status:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          example: active
+      required:
+        - id
+        - name
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          example: john.doe@example.com
+        provider:
+          type: string
+          example: email
+        socialId:
+          type: string
+          example: '1234567890'
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        photo:
+          $ref: '#/components/schemas/FileType'
+        role:
+          $ref: '#/components/schemas/Role'
+        status:
+          $ref: '#/components/schemas/Status'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        deletedAt:
+          format: date-time
+          type: string
+      required:
+        - id
+        - email
+        - provider
+        - socialId
+        - firstName
+        - lastName
+        - photo
+        - role
+        - status
+        - createdAt
+        - updatedAt
+        - deletedAt
+    InfinityPaginationUserResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        hasNextPage:
+          type: boolean
+          example: true
+      required:
+        - data
+        - hasNextPage
+    UpdateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test1@example.com
+        password:
+          type: string
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        photo:
+          $ref: '#/components/schemas/FileDto'
+        role:
+          $ref: '#/components/schemas/RoleDto'
+        status:
+          $ref: '#/components/schemas/StatusDto'
+    CreateFolderDto:
+      type: object
+      properties:
+        name:
+          type: string
+        parentFolderId:
+          type: string
+      required:
+        - name
+        - parentFolderId
+    UpdateFolderDto:
+      type: object
+      properties:
+        name:
+          type: string
+        parentFolderId:
+          type: string
+    FileResponseDto:
+      type: object
+      properties:
+        name:
+          type: string
+        alternativeText:
+          type: string
+        caption:
+          type: string
+        width:
+          type: number
+        height:
+          type: number
+        formats:
+          type: object
+        hash:
+          type: string
+        ext:
+          type: string
+        mime:
+          type: string
+        size:
+          type: number
+        url:
+          type: string
+        key:
+          type: string
+        previewUrl:
+          type: string
+        provider:
+          type: string
+        providerMetadata:
+          type: string
+        folder:
+          $ref: '#/components/schemas/Folder'
+    UpdateFileDto:
+      type: object
+      properties:
+        name:
+          type: string
+        alternativeText:
+          type: string
+        caption:
+          type: string
+        folderId:
+          type: string
+    AuthEmailLoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john.doe@example.com
+        password:
+          type: string
+      required:
+        - email
+        - password
+    LoginResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        refreshToken:
+          type: string
+        tokenExpires:
+          type: number
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - token
+        - refreshToken
+        - tokenExpires
+        - user
+    AuthRegisterLoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test1@example.com
+        password:
+          type: string
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+      required:
+        - email
+        - password
+        - firstName
+        - lastName
+    AuthConfirmEmailDto:
+      type: object
+      properties:
+        hash:
+          type: string
+      required:
+        - hash
+    AuthForgotPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test1@example.com
+      required:
+        - email
+    AuthResetPasswordDto:
+      type: object
+      properties:
+        password:
+          type: string
+        hash:
+          type: string
+      required:
+        - password
+        - hash
+    RefreshResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        refreshToken:
+          type: string
+        tokenExpires:
+          type: number
+      required:
+        - token
+        - refreshToken
+        - tokenExpires
+    AuthUpdateDto:
+      type: object
+      properties:
+        photo:
+          $ref: '#/components/schemas/FileDto'
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: new.email@example.com
+        password:
+          type: string
+        oldPassword:
+          type: string
